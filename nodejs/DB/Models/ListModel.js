@@ -8,13 +8,13 @@ const ListSchema = new mongoose.Schema({
         trim: true
     },
     // with auth
-    _userId: {
+   /* _userId: {
         type: mongoose.Types.ObjectId,
         required: true
-    }
+    }*/
 
-})
+});
 
 const List = mongoose.model('List', ListSchema);
 
-module.exports = { List }
+module.exports = { List };

@@ -37,6 +37,23 @@ app.post("/lists",(req,res)=>{
 });
 
 
+app.patch('/lists/:id',(req,res)=>{
+    List.findOneAndUpdate({ _id: req.params.id }, {
+        $set: req.body
+    }).then(() => {
+        res.send({ 'message': 'updated successfully'});
+    });
+});
+
+
+app.delete("/lists/:id",(req,res)=>{
+    List.findOneAndDelete({_id:req.params.id}).then(()=>{
+        res.send({"message":"deleted"})
+    });
+});
+
+
+
 
 app.get("/",(req,res)=>{
     console.log("this shiit is pissing me off");

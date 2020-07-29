@@ -19,6 +19,7 @@ app.use(function (req, res, next) {
 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-refresh-token, _id");
 
+    res.header("Access-Control-Allow-Methods","GET, POST , DELETE, PATCH, PUT , OPTIONS, HEAD");
 
     next();
 });
@@ -110,13 +111,14 @@ app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
 
     // console.log(req.params.listId)
 
-    console.log(req.params.taskId)
+
+
     Task.findOneAndUpdate({ _id: req.params.taskId, _listId: req.params.listId }, {
 
         $set: req.body
     }).then((updatedtask) => {
 
-        res.send("updatedtask")
+        res.send({"message":"updatedtask"});
     })
 });
 

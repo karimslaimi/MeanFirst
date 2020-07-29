@@ -95,9 +95,12 @@
         transform: scale(1);
       }
     }
-  }
+  }&.complete{
+     text-decoration: line-through;
+     opacity: 0.8;
+   }
 
-  &.completed .task-text {
+  &.complete .task-text {
     text-decoration: line-through;
     opacity: 0.8;
   }

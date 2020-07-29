@@ -11,18 +11,13 @@
       </H1>
 
       <div class="list-menu">
-        <a href="" class="list-menu-item is-active">
-          <p>List #1</p>
-        </a>
-        <a href="" class="list-menu-item">
-          <p>List #2</p>
-        </a>
-        <a href="" class="list-menu-item">
-          <p>List #3</p>
+
+        <a href="" class="list-menu-item" *ngFor="let list of lists" [routerLink]="['/lists',list._id]" routerLinkActive="is-active">
+          <p>{{list.title}}</p>
         </a>
       </div>
 
-      <button class="button is-primary has-text-white" (click)="createnewList()">+ New List</button>
+      <button class="button is-primary has-text-white"  routerLink="/new-list" >+ New List</button>
 
     </div>
 
@@ -33,15 +28,12 @@
         Tasks
 
       </div>
-      <div class="task">
-        <p>this is something i have to do</p>
+      <div class="task" *ngFor="let task of tasks" (click)="onTaskclick(task)" [ngClass]="{'complete':task.completed}">
+        <p>{{task.title}}</p>
       </div>
-      <div class="task complete">
-        <p>this is something i have to do</p>
-      </div>
-      <div class="task complete">
-        <p>this is something i have to do</p>
-      </div>
+      <button routerLink="./new-task" class="button circle-add-button is-primary">
+        <span class="has-text-white is-medium">+</span>
+      </button>
     </div>
 
   </div>

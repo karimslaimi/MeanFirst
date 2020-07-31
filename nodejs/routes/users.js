@@ -21,9 +21,33 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept, x-access-token, x-refresh-token, _id");
 
   res.header("Access-Control-Allow-Methods","GET, POST , DELETE, PATCH, PUT , OPTIONS, HEAD");
-
+  res.header(
+      'Access-Control-Expose-Headers',
+      'x-access-token, x-refresh-token'
+  );
   next();
 });
+
+
+
+
+
+let authenticate=(req,res,next)=>{
+let token=req.header("x-access-token");
+jwt.verify(token,User.getJwtSecret(),(err,decode)=>{
+  if(err){
+    res.status(401).send(err);
+  }else {
+    req.user_id=decode._id;
+
+    next();
+  }
+
+});
+};
+
+
+
 
 let verifysession=function (req,res,next){
   let refreshToken=req.header("x-refresh-token");
@@ -122,4 +146,4 @@ app.get("/users/me/access-token",verifysession,(req,res)=>{
 });
 
 
-module.exports = app;
+module.exports = {app,authenticate};

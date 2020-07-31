@@ -10,7 +10,7 @@ var { mongoose } = require("../DB/Mongoose");
 const { List } = require("../DB/Models/ListModel");
 const { Task } = require("../DB/Models/TaskModel");
 
-
+var users=require("./users");
 
 
 // CORS HEADERS MIDDLEWARE
@@ -38,12 +38,17 @@ app.use(bodyparser.json());
 //let s create a method to return all list
 
 app.get("/lists", (req, res) => {
-    List.find({}).then((lists) => {
+    List.find({
+        _userId:req.user_id
+    }).then((lists) => {
         res.send(lists);
     }).catch((error) => {
         console.log(error);
     });
 });
+
+
+
 
 //the create method
 
@@ -69,8 +74,9 @@ app.patch('/lists/:id', (req, res) => {
 
 
 app.delete("/lists/:id", (req, res) => {
-    List.findOneAndDelete({ _id: req.params.id }).then(() => {
-        res.send({ "message": "deleted" })
+    List.findOneAndRemove({ _id: req.params.id }).then((list) => {
+        res.send({ "message": "deleted" });
+        deleteTaskfromList(list._id);
     });
 });
 
@@ -131,8 +137,20 @@ app.delete("/lists/:listId/tasks/:taskId",(req,res)=>{
 
 
 
+let deleteTaskfromList=(listid)=>{
+        Task.deleteMany({
+            _listId:listid
+        }).then(()=>{
+            console.log("tasks deleted")
+    });
+};
+
+
+
+
 app.get("/", (req, res) => {
     console.log("this shiit is pissing me off");
     res.send("trying the api")
 });
+
 module.exports = app;

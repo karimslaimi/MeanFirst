@@ -17,8 +17,11 @@ export class TaskViewComponent implements OnInit {
   tasks:TaskModel[];
   ngOnInit(): void {
     this.route.params.subscribe((params:Params)=>{
+      if(params.id){
       this.taskservice.getTasks(params.id).subscribe((tasks:any)=>{this.tasks=tasks});
-    });
+    }else {
+        this.tasks=undefined;
+      }});
     this.taskservice.getList().subscribe((lists:any)=>{
 
       this.lists=lists;

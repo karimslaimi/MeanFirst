@@ -156,6 +156,11 @@ UserSchema.pre('save', function (next) {
     }
 });
 
+
+UserSchema.statics.getJwtSecret= ()=>{
+return jwtSecret;
+}
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = {User};

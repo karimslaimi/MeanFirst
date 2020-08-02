@@ -37,7 +37,7 @@ app.use(bodyparser.json());
 
 //let s create a method to return all list
 
-app.get("/lists", (req, res) => {
+app.get("/lists",users.authenticate, (req, res) => {
     List.find({
         _userId:req.user_id
     }).then((lists) => {
@@ -52,11 +52,12 @@ app.get("/lists", (req, res) => {
 
 //the create method
 
-app.post("/lists", (req, res) => {
+app.post("/lists",users.authenticate, (req, res) => {
 
     let title = req.body.title;
     let newlist = new List({
-        title: title
+        title: title,
+        _userId: req.user_id
     });
     newlist.save().then((listdoc) => {
         res.send(listdoc);
@@ -64,8 +65,8 @@ app.post("/lists", (req, res) => {
 });
 
 
-app.patch('/lists/:id', (req, res) => {
-    List.findOneAndUpdate({ _id: req.params.id }, {
+app.patch('/lists/:id',users.authenticate,  (req, res) => {
+    List.findOneAndUpdate({ _id: req.params.id,_userId:req.user_id }, {
         $set: req.body
     }).then(() => {
         res.send({ 'message': 'updated successfully' });
@@ -73,8 +74,8 @@ app.patch('/lists/:id', (req, res) => {
 });
 
 
-app.delete("/lists/:id", (req, res) => {
-    List.findOneAndRemove({ _id: req.params.id }).then((list) => {
+app.delete("/lists/:id",users.authenticate, (req, res) => {
+    List.findOneAndRemove({ _id: req.params.id,_userId:req.user_id }).then((list) => {
         res.send({ "message": "deleted" });
         deleteTaskfromList(list._id);
     });
@@ -83,7 +84,7 @@ app.delete("/lists/:id", (req, res) => {
 
 
 
-app.get("/lists/:listid/tasks/:taskId", (req, res) => {
+app.get("/lists/:listid/tasks/:taskId",users.authenticate, (req, res) => {
     //fetch one task of specific list
     Task.findOne({
         _listId: req.params.listid,
@@ -93,7 +94,7 @@ app.get("/lists/:listid/tasks/:taskId", (req, res) => {
     })
 });
 
-app.get("/lists/:listid/tasks", (req, res) => {
+app.get("/lists/:listid/tasks", users.authenticate,(req, res) => {
     //fetch tasks of specific list
     Task.find({
         _listId: req.params.listid
@@ -102,37 +103,76 @@ app.get("/lists/:listid/tasks", (req, res) => {
     })
 });
 
-app.post("/lists/:listid/tasks", (req, res) => {
-    let newtask = new Task({
-        title: req.body.title,
-        _listId: req.params.listid
+app.post("/lists/:listid/tasks",users.authenticate, (req, res) => {
+    List.find({_id:req.params.listid,_userId:req.user_id}).then((List)=>{
+        if(List){
+
+            return true;
+        }
+        return false;
+    }).then((cancreatetask)=>{
+        if(cancreatetask){
+            let newtask = new Task({
+                title: req.body.title,
+                _listId: req.params.listid
+            });
+            newtask.save().then((newtaskdoc) => {
+                res.send(newtaskdoc)
+            })
+        }else {
+            res.sendStatus(404);
+        }
     });
-    newtask.save().then((newtaskdoc) => {
-        res.send(newtaskdoc)
-    })
+
 });
 
 
-app.patch("/lists/:listId/tasks/:taskId", (req, res) => {
+app.patch("/lists/:listId/tasks/:taskId",users.authenticate, (req, res) => {
 
     // console.log(req.params.listId)
 
+    List.find({
+        _id:req.params.listid,_userId:req.user_id
+    }).then((List)=>{
+        if(List){
+            return true;
+        }
+        return false;
+    }).then((flag)=>{
+        if(flag){
+            Task.findOneAndUpdate({ _id: req.params.taskId, _listId: req.params.listId }, {
+
+                $set: req.body
+            }).then((updatedtask) => {
+
+                res.send({"message":"updatedtask"});
+            })
+        }else {
+            res.sendStatus(404);
+        }
+    });
 
 
-    Task.findOneAndUpdate({ _id: req.params.taskId, _listId: req.params.listId }, {
 
-        $set: req.body
-    }).then((updatedtask) => {
-
-        res.send({"message":"updatedtask"});
-    })
 });
 
-app.delete("/lists/:listId/tasks/:taskId",(req,res)=>{
+app.delete("/lists/:listId/tasks/:taskId",users.authenticate,(req,res)=>{
+    List.find({
+        _id:req.params.listid,_userId:req.user_id
+    }).then((List)=>{
+        if(List){
+            return true;
+        }
+        return false;
+    }).then((flag)=>{
+        if(flag){
     Task.findOneAndDelete({
 
         _id:req.params.taskId,_listId:req.params.listId
-    }).then(()=>{res.send("deleted")})
+    }).then((task)=>{res.send(task)})
+        }else {
+        res.sendStatus(404)}
+    })
 });
 
 

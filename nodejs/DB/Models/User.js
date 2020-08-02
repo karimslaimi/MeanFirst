@@ -96,6 +96,7 @@ let saveSessionDB = (user, refreshtoken) => {
 let generateRefreshTokenExpiryTime = () => {
     let daysuntilexpire = 10;
     let seconduntilexpire = ((daysuntilexpire * 24) * 60) * 60;
+
     return ((Date.now() / 1000) + seconduntilexpire);
 };
 

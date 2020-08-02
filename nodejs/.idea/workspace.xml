@@ -2,10 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f3d4d6d3-e0b8-4184-bd84-ec7aa92a5353" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Views/src/app/auth.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Views/src/app/auth.service.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Views/src/app/web-req-interceptor.service.spec.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../Views/src/app/web-req-interceptor.service.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-list/edit-list.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-list/edit-list.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-list/edit-list.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-list/edit-list.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-task/edit-task.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-task/edit-task.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-task/edit-task.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/edit-task/edit-task.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/signup/signup.component.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/signup/signup.component.scss" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/signup/signup.component.spec.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../Views/src/app/pages/signup/signup.component.ts" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/mongoose/browser.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/mongoose/build-browser.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/mongoose/index.js" afterDir="false" />
@@ -208,17 +216,20 @@
       <change afterPath="$PROJECT_DIR$/node_modules/mongoose/tools/sharded.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/mongoose/webpack.base.config.js" afterDir="false" />
       <change afterPath="$PROJECT_DIR$/node_modules/mongoose/webpack.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Views/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Views/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Views/src/app/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/auth.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Views/src/app/pages/login/login.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/pages/login/login.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Views/src/app/pages/login/login.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/pages/login/login.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Views/src/app/pages/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/pages/login/login.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Views/src/app/pages/task-view/task-view.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/pages/task-view/task-view.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Views/src/app/pages/task-view/task-view.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/pages/task-view/task-view.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Views/src/app/task.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/task.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Views/src/app/web-req-interceptor.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/web-req-interceptor.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Views/src/app/web-request.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../Views/src/app/web-request.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DB/Models/ListModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/Models/ListModel.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DB/Models/User.js" beforeDir="false" afterPath="$PROJECT_DIR$/DB/Models/User.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/app.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/tasks.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/tasks.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/routes/users.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -234,6 +245,7 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="PhpDebugGeneral" listening_started="true" />
   <component name="ProjectId" id="1eNbl7azjrhVEEwI2uGHtKrBukG" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -281,6 +293,8 @@
       <workItem from="1595954371419" duration="1754000" />
       <workItem from="1596032692913" duration="13487000" />
       <workItem from="1596131227081" duration="6910000" />
+      <workItem from="1596328675529" duration="6129000" />
+      <workItem from="1596373845772" duration="7879000" />
     </task>
     <servers />
   </component>
@@ -307,16 +321,10 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/DB/Models/User.js</url>
-          <line>88</line>
+          <url>file://$PROJECT_DIR$/routes/tasks.js</url>
+          <line>68</line>
           <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/DB/Models/User.js</url>
-          <line>115</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="7" />
+          <option name="timeStamp" value="1" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

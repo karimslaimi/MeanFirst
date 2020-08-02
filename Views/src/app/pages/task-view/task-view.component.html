@@ -24,13 +24,61 @@
 
     <div class="task-list-container has-background-light">
       <div *ngIf="tasks">
-        <div class="title has-text-primary">
+        <div class="top-bar">
 
-          Tasks
+          <h1 class="title has-text-primary">
+
+            Tasks
+
+          </h1>
+
+
+          <div class="dropdown is-right is-hoverable">
+            <div class="dropdown-trigger">
+              <button class="button" aria-haspopup="true" >
+
+                <span class="icon is-small">
+        <i class="fas fa-cog" aria-hidden="true"></i>
+      </span>
+              </button>
+            </div>
+            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+              <div class="dropdown-content">
+                <a href="#" [routerLink]="['/edit-list',selectedList]" class="dropdown-item">
+                 Edit
+                </a>
+
+                <a   (click)="onDeleteList()" class="dropdown-item has-text-danger">
+                  Delete
+                </a>
+              </div>
+            </div>
+          </div>
+
+
 
         </div>
-        <div class="task" *ngFor="let task of tasks" (click)="onTaskclick(task)" [ngClass]="{'complete':task.completed}">
-          <p>{{task.title}}</p>
+
+        <div class="task" *ngFor="let task of tasks"  [ngClass]="{'complete':task.completed}">
+         <div class="task-text" (click)="onTaskclick(task)">
+           <p>{{task.title}}</p>
+         </div>
+          <div class="task-buttons" [routerLink]="['/lists', selectedList, 'edit-task', task._id]">
+
+            <button class="button " style="margin-right: 10px" >
+              <div class="icon">
+
+                <i class="fas fa-edit"></i>
+              </div>
+            </button>
+            <button class="button is-danger" (click)="deleteTask(task._id)" >
+              <div class="icon">
+
+                <i class="fas fa-trash"></i>
+              </div>
+            </button>
+          </div>
+
         </div>
         <button routerLink="./new-task" class="button circle-add-button is-primary">
           <span class="has-text-white is-medium">+</span>

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {WebRequestService} from './web-request.service';
 import {TaskModel} from './Models/Task.Model';
+import {ListModel} from './Models/List.Model';
 
 @Injectable({
   providedIn: 'root'
@@ -30,5 +31,22 @@ export class TaskService {
   completed(task:TaskModel){
     return this.service.patch(`lists/${task._listId}/tasks/${task._id}`,{completed:!task.completed})
   }
+
+  delete(listid:string){
+    return this.service.delete(`lists/${listid}`);
+  }
+
+  updateList(List:ListModel){
+    return this.service.patch(`lists/${List._id}`,{title:List.title})
+  }
+
+  deleteTask(taskid:string ,list_id:string){
+    return this.service.delete(`lists/${list_id}/tasks/${taskid}`);
+  }
+
+  updatetask(title,selectedtask,selectedList){
+    return this.service.patch(`lists/${selectedList}/tasks/${selectedtask}`,{title:title})
+
+}
 
 }

@@ -31,7 +31,14 @@ export class WebRequestService {
 
   login(email:String,password:String){
     console.log("web service");
-    return this.http.post(`${this.root_url}/users/login`,{email,password},{observe:"response"});
+    let url="users/login";
+    return this.http.post(`${this.root_url}/${url}`,{email,password},{observe:"response"});
   }
+  signup(email:String,password:String){
+    console.log("signup service");
+    let url="users";
+    return this.http.post(`${this.root_url}/${url}`,{email,password},{observe:"response"});
+  }
+
 
 }
